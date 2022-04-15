@@ -5,21 +5,43 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{97e2ee4c-e5ca-4da0-8155-e2655be6185e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Friend.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Link.cpp">
+      <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="FriendNode.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Friend.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FriendNode.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Link.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Friend.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
