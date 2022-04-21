@@ -29,6 +29,9 @@
     <ClCompile Include="Friend.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FriendNode.h">
@@ -42,6 +45,9 @@
     </ClInclude>
     <ClInclude Include="Friend.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

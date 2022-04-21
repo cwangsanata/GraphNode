@@ -1,8 +1,11 @@
 #pragma once
-#ifndef FRIEND_H
-#define FRIEND_H
+
+#include <string>
+
 class Friend
 {
-};
+private:
+  std::string name;
 
-#endif
+public:
+};

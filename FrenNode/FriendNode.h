@@ -12,8 +12,9 @@ class FriendNode
 private:
   float radius;
   int red, green, blue;
-  sf::CircleShape circle;
   int x, y;
+  sf::CircleShape circle;
+  sf::Text text;
   std::vector<FriendNode> adjList; // Adjacency list implementation of graph
 
 public:
@@ -24,18 +25,24 @@ public:
   {
   }
 
-  sf::CircleShape getCircle()
-  {
-    return circle;
-  }
+  sf::CircleShape getCircle() { return circle; }
 
-  bool checkCollision(FriendNode);
+  int getX() { return x; }
+
+  int getY() { return y; }
+
+  int getRadius() { return radius; }
+
+  sf::Text getText() { return text;}
+
+  bool validLoc(FriendNode);
   void addFriend(FriendNode);
+  void printFriends();
+
 // checkDist()
 // removeFriend()
 //    removes link from friend
 // distanceFromFriend()
 //    degrees of friendship
 // readjust()
-
 };

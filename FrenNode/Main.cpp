@@ -1,34 +1,32 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "FriendNode.h"
+#include "Link.h"
+
+#define WIDTH 1000
+#define HEIGHT 1000
 
 int main()
 {
   // Window settings
   sf::ContextSettings settings;
-  settings.antialiasingLevel = 10;
-  sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!", sf::Style::Default, settings);
+  settings.antialiasingLevel = 100;
+  sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "FrenNode", sf::Style::Default, settings);
   
   // TEST
-  sf::CircleShape shape(25.f);
-  shape.setFillColor(sf::Color(255, 255, 0));
-  shape.setPosition(100, 100);
-  shape.setOrigin(25, 25);
+  FriendNode friendOne; // (500, 500)
+  FriendNode friendTwo(50, 0);
+  FriendNode friendThree(50, 900);
+  FriendNode friendFour(100, 100);
+ 
+  Link testLinkOne(friendTwo, friendThree);
+  Link testLinkTwo(friendTwo, friendOne);
+  Link testLinkThree(friendOne, friendThree);
+  Link testLinkFour(friendOne, friendFour);
+  Link testLinkFive(friendTwo, friendFour);
 
-  sf::CircleShape shapeTwo(25.f);
-  shapeTwo.setFillColor(sf::Color(255, 255, 0));
-  shapeTwo.setPosition(200, 200);
-  shapeTwo.setOrigin(25, 25);
 
-  FriendNode friendOne;
-
-  sf::Vertex line[] = 
-  {
-    // Testing line in viewer
-    sf::Vertex(sf::Vector2f(100, 100)),
-    sf::Vertex(sf::Vector2f(200, 200))
-  };
-
+  // Window draw
   while (window.isOpen())
   {
     sf::Event event;
@@ -38,13 +36,28 @@ int main()
         window.close();
     }
 
-    window.clear();
-    window.draw(shape);
-    window.draw(shapeTwo);
+    window.clear(sf::Color(255, 255, 255));
+    
+    window.draw(testLinkOne.getLine());
+    window.draw(testLinkTwo.getLine());
+    window.draw(testLinkThree.getLine());
+    window.draw(testLinkFour.getLine());
+    window.draw(testLinkFive.getLine());
+
     window.draw(friendOne.getCircle());
-    window.draw(line, 2, sf::Lines);
+    window.draw(friendTwo.getCircle());
+    window.draw(friendThree.getCircle());
+    window.draw(friendFour.getCircle());
+
+
+    // Text is not working
+    window.draw(friendOne.getText());
+
     window.display();
   }
 
-  return 0;
+  // TODO: Fix fullscreen more
+  // include some kind of checker for the amount of people
+
+  return EXIT_SUCCESS;
 }
