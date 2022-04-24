@@ -12,6 +12,7 @@ int main()
   sf::ContextSettings settings;
   settings.antialiasingLevel = 100;
   sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "FrenNode", sf::Style::Default, settings);
+  window.setVerticalSyncEnabled(true);
   
   // TEST
   FriendNode friendOne; // (500, 500)
@@ -34,6 +35,14 @@ int main()
     {
       if (event.type == sf::Event::Closed)
         window.close();
+
+      if (event.type == sf::Event::KeyPressed)
+      {
+        if (event.key.code == sf::Keyboard::Escape)
+        {
+          window.close();
+        }
+      }
     }
 
     window.clear(sf::Color(255, 255, 255));
@@ -48,6 +57,10 @@ int main()
     window.draw(friendTwo.getCircle());
     window.draw(friendThree.getCircle());
     window.draw(friendFour.getCircle());
+    
+    friendOne.update();
+    testLinkTwo.update();
+
 
 
     // Text is not working

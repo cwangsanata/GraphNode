@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include "FriendNode.h"
+#include <iostream>
 
 #define PI 3.14159265
 
@@ -13,14 +14,14 @@ class Link
 {
 private:
   int red, green, blue;
-  FriendNode source;
-  FriendNode end;
+  float angle;
+  float startX, startY;
+  FriendNode source, end;
   sf::RectangleShape edge;
 
 public:
   Link(FriendNode, FriendNode);
-  sf::RectangleShape getLine()
-  {
-    return edge;
-  }
+
+  sf::RectangleShape getLine() { return edge; }
+  void update();
 };

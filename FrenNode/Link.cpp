@@ -3,27 +3,32 @@
 Link::Link(FriendNode source, FriendNode end)
 {
   red = 0; green = 0; blue = 0;
+  startX = source.getX() + source.getRadius();
+  startY = source.getY() + source.getRadius();
+
   edge.setFillColor(sf::Color(red, green, blue));
   edge.setOrigin(0, 0);
-  edge.setPosition(source.getX() + source.getRadius(), source.getY() + source.getRadius());
+  edge.setPosition(startX, startY);
 
-  float deltaX = end.getX() - source.getX();
-  float deltaY = end.getY() - source.getY();
-  float angle = 0;
+  float dx = end.getX() - source.getX();
+  float dy = end.getY() - source.getY();
+  angle = 0; // In degrees
 
-  // JANK AF
-  if (deltaX < 0)
-    angle = 180 + atan(deltaY / deltaX) * (180 / PI);
-  else if (deltaX > 0)
-    angle = atan(deltaY / deltaX) * (180 / PI);
-
-  if (deltaX == 0 && deltaY > 0)
+    // Initialization and rotation 
+  if (dx < 0)
+    angle = 180 + atan(dy / dx) * (180 / PI);
+  else if (dx > 0)
+    angle = atan(dy / dx) * (180 / PI);
+  else if (dx == 0 && dy > 0)
     angle = 90;
-  else if (deltaX == 0 && deltaY < 0)
+  else if (dx == 0 && dy < 0)
     angle = -90;
 
-  edge.setSize(sf::Vector2f(sqrt(deltaX*deltaX + deltaY*deltaY), 2));
+  edge.setSize(sf::Vector2f(hypot(dy, dx), 2));
   edge.setRotation(angle);
+}
 
-  
+void Link::update() 
+{
+
 }
