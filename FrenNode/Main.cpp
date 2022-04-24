@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <vector>
 #include "FriendNode.h"
 #include "Link.h"
 
@@ -26,6 +27,26 @@ int main()
   Link testLinkFour(friendOne, friendFour);
   Link testLinkFive(friendTwo, friendFour);
 
+  // Randomly adding friends to network
+  std::vector<FriendNode> friends;
+  for (int i = 0; i < 10; i++)
+  {
+    int randX = std::rand() % WIDTH;
+    int randY = std::rand() % HEIGHT;
+    FriendNode tempFriend(randX, randY);
+    friends.push_back(tempFriend);
+  }
+
+  // Adding links to adjacent nodes in friends
+  std::vector<Link> links;
+  for (int i = 0; i < friends.size() - 1; i++)
+  {
+    Link tempLink(friends[i], friends[i+1]);
+    friends[i].getFriend().addFriend(friends[i+1].getFriend());
+    links.push_back(tempLink);
+  }
+
+  friends.at(0).getFriend().printFriends();
 
   // Window draw
   while (window.isOpen())
@@ -61,9 +82,21 @@ int main()
     friendOne.update();
     testLinkTwo.update();
 
+    // Draw all the nodes
+    for (Link b : links)
+    {
+      // window.draw(b.getLine());
+    }
 
 
-    // Text is not working
+    // Draw all the friends
+    for (FriendNode a : friends)
+    {
+      // window.draw(a.getCircle());
+    }
+
+
+    // TODO: Text is not working
     window.draw(friendOne.getText());
 
     window.display();

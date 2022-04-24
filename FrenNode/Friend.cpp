@@ -5,6 +5,11 @@ Friend::Friend()
   name = "null";
 }
 
+Friend::Friend(std::string name_)
+{
+  name = name_;
+}
+
 void Friend::addFriend(Friend a)
 {
   adjList.push_back(a);
@@ -12,6 +17,11 @@ void Friend::addFriend(Friend a)
 
 void Friend::removeFriend(Friend a)
 {
-  // TODO: Delete friend, remove node, remove link
+  adjList.erase(std::remove(adjList.begin(), adjList.end(), a), adjList.end());
 }
 
+void Friend::printFriends()
+{
+  for (Friend a : adjList)
+    std::cout << a.getName() << std::endl;
+}
