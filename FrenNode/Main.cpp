@@ -46,7 +46,7 @@ int main()
     links.push_back(tempLink);
   }
 
-  friends.at(0).getFriend().printFriends();
+  friends[0].getFriend().printFriends();
 
   // Window draw
   while (window.isOpen())
@@ -80,6 +80,8 @@ int main()
     window.draw(friendFour.getCircle());
     
     friendOne.update();
+    friendTwo.update();
+    friendThree.update();
     testLinkTwo.update();
 
     // Draw all the nodes
@@ -94,10 +96,6 @@ int main()
     {
       // window.draw(a.getCircle());
     }
-
-
-    // TODO: Text is not working
-    window.draw(friendOne.getText());
 
     window.display();
   }

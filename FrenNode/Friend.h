@@ -33,7 +33,9 @@ public:
   }
 
 
-  
-// distanceFromFriend()
+ 
+// removeFriend()
+//    removes link from friend
+// degreesFromFriend()
 //    degrees of friendship
 };

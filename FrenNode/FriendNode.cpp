@@ -17,10 +17,6 @@ FriendNode::FriendNode()
   circle.setPosition(x, y);
   circle.setOrigin(0, 0);
 
-  text.setString("null");
-  text.setPosition(x, y);
-  text.setFillColor(sf::Color(0, 0, 0));
-
   xVelocity = 0;
   yVelocity = 0;
   xAcceleration = 0;
@@ -40,10 +36,6 @@ FriendNode::FriendNode(int x_, int y_)
 
   circle.setPosition(x, y);
   circle.setOrigin(0, 0);
-
-  text.setString("null");
-  text.setPosition(x, y);
-  text.setFillColor(sf::Color(0, 0, 0));
 
   xVelocity = 0;
   yVelocity = 0;
@@ -66,9 +58,6 @@ FriendNode::FriendNode(int x_, int y_, std::string name_)
   circle.setOrigin(0, 0);
 
   friendDetails.setName(name_);
-  text.setString(friendDetails.getName());
-  text.setPosition(x, y);
-  text.setFillColor(sf::Color(0, 0, 0));
 
   xVelocity = 0;
   yVelocity = 0;
@@ -98,14 +87,14 @@ float FriendNode::getDistance(FriendNode a)
 {
   float dx = a.getX() - x;
   float dy = a.getY() - y;
-  return sqrt(dx*dx + dy*dy);
+  return hypot(dx, dy);
 }
 
 void FriendNode::update()
 {
   x += xVelocity;
   y += yVelocity;
-  circle.move(xVelocity, yVelocity);
+  circle.setPosition(x, y);
 }
 
 

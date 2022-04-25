@@ -19,7 +19,6 @@ private:
   float xVelocity, yVelocity;
   float xAcceleration, yAcceleration;
   sf::CircleShape circle;
-  sf::Text text;
   Friend friendDetails;
 
 public:
@@ -35,7 +34,6 @@ public:
   void setX(int x_) { x = x_; }
   void setY(int y_) { y = y_; }
   int getRadius() { return radius; }
-  sf::Text getText() { return text;}
   Friend getFriend() { return friendDetails; }
 
   bool validLoc(FriendNode);
@@ -46,10 +44,5 @@ public:
   void attractiveForce(FriendNode); // Applies stronger to only nodes with edges
   void netForce(FriendNode); // merge both forces together
   void update();
-// checkDist()
-// removeFriend()
-//    removes link from friend
-// distanceFromFriend()
-//    degrees of friendship
   
 };

@@ -14,13 +14,14 @@ class Link
 {
 private:
   int red, green, blue;
-  float angle;
-  float startX, startY;
-  FriendNode source, end;
+  float angle; // In degrees
+  float dx, dy;
+  FriendNode *source; 
+  FriendNode *end;
   sf::RectangleShape edge;
 
 public:
-  Link(FriendNode, FriendNode);
+  Link(FriendNode &, FriendNode &);
 
   sf::RectangleShape getLine() { return edge; }
   void update();
