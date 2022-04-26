@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include "FriendNode.h"
+#include "Node.h"
 #include "Link.h"
 
 #define WIDTH 1000
 #define HEIGHT 1000
+
+// TODO: Move all getters and setters to cpp files
 
 int main()
 {
@@ -14,12 +16,20 @@ int main()
   settings.antialiasingLevel = 100;
   sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "FrenNode", sf::Style::Default, settings);
   window.setVerticalSyncEnabled(true);
+
+  sf::Font font;
+  if (!font.loadFromFile("/Resources/OpenSans-Regular.ttf"))
+  {
+    std::cout << "Error loading font" << std::endl;
+    system("pause");
+  }
+    
   
   // TEST
-  FriendNode friendOne; // (500, 500)
-  FriendNode friendTwo(50, 0);
-  FriendNode friendThree(50, 900);
-  FriendNode friendFour(100, 100);
+  Node friendOne; // (500, 500)
+  Node friendTwo(50, 0);
+  Node friendThree(50, 900);
+  Node friendFour(100, 100);
  
   Link testLinkOne(friendTwo, friendThree);
   Link testLinkTwo(friendTwo, friendOne);
@@ -28,12 +38,12 @@ int main()
   Link testLinkFive(friendTwo, friendFour);
 
   // Randomly adding friends to network
-  std::vector<FriendNode> friends;
+  std::vector<Node> friends;
   for (int i = 0; i < 10; i++)
   {
     int randX = std::rand() % WIDTH;
     int randY = std::rand() % HEIGHT;
-    FriendNode tempFriend(randX, randY);
+    Node tempFriend(randX, randY);
     friends.push_back(tempFriend);
   }
 
@@ -57,7 +67,7 @@ int main()
       if (event.type == sf::Event::Closed)
         window.close();
 
-      if (event.type == sf::Event::KeyPressed)
+      else if (event.type == sf::Event::KeyPressed)
       {
         if (event.key.code == sf::Keyboard::Escape)
         {
@@ -66,7 +76,7 @@ int main()
       }
     }
 
-    window.clear(sf::Color(255, 255, 255));
+    window.clear(sf::Color::White);
     
     window.draw(testLinkOne.getLine());
     window.draw(testLinkTwo.getLine());
@@ -82,17 +92,23 @@ int main()
     friendOne.update();
     friendTwo.update();
     friendThree.update();
+    friendFour.update();
     testLinkTwo.update();
+    testLinkThree.update();
+    testLinkFour.update();
+    testLinkFive.update();
+    testLinkOne.update();
 
+    window.draw(friendOne.getText());
     // Draw all the nodes
-    for (Link b : links)
+    for (const Link b : links)
     {
       // window.draw(b.getLine());
     }
 
 
     // Draw all the friends
-    for (FriendNode a : friends)
+    for (const Node a : friends)
     {
       // window.draw(a.getCircle());
     }

@@ -32,10 +32,6 @@ public:
       return false;
   }
 
-
- 
-// removeFriend()
-//    removes link from friend
 // degreesFromFriend()
 //    degrees of friendship
 };

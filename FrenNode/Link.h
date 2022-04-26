@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math.h>
-#include "FriendNode.h"
+#include "Node.h"
 #include <iostream>
 
 #define PI 3.14159265
@@ -16,13 +16,14 @@ private:
   int red, green, blue;
   float angle; // In degrees
   float dx, dy;
-  FriendNode *source; 
-  FriendNode *end;
+  Node *source; 
+  Node *end;
   sf::RectangleShape edge;
 
 public:
-  Link(FriendNode &, FriendNode &);
-
+  Link(Node &, Node &);
+  // TODO: Add delete 
   sf::RectangleShape getLine() { return edge; }
   void update();
+  float getAngle(float, float, float, float);
 };

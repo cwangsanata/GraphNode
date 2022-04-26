@@ -10,22 +10,23 @@
 
 #include "Friend.h"
 
-class FriendNode
+class Node
 {
 private:
   float radius;
   int red, green, blue;
   int x, y;
   float xVelocity, yVelocity;
-  float xAcceleration, yAcceleration;
+  float xAccel, yAccel;
+  sf::Text text;
   sf::CircleShape circle;
-  Friend friendDetails;
+  Friend friendInfo;
 
 public:
   // Constructors
-  FriendNode();
-  FriendNode(int, int);
-  FriendNode(int, int, std::string);
+  Node();
+  Node(int, int);
+  Node(int, int, std::string);
   // ~FriendNode();
 
   sf::CircleShape getCircle() { return circle; }
@@ -34,15 +35,17 @@ public:
   void setX(int x_) { x = x_; }
   void setY(int y_) { y = y_; }
   int getRadius() { return radius; }
-  Friend getFriend() { return friendDetails; }
+  Friend getFriend() { return friendInfo; }
+  sf::Text getText() { return text; }
 
-  bool validLoc(FriendNode);
-  void addNode(FriendNode);
-  float getDistance(FriendNode);
-
-  void repulsiveForce(FriendNode); // Universally applies
-  void attractiveForce(FriendNode); // Applies stronger to only nodes with edges
-  void netForce(FriendNode); // merge both forces together
+  bool validLoc(Node);
+  void addNode(Node);
   void update();
+
+  float getDistance(Node);
+  float repulsiveForce(Node); // Universally applies
+  float attractiveForce(Node); // Applies stronger to only nodes with edges
+  void netForce(); // merge both forces together
+  
   
 };

@@ -1,9 +1,9 @@
-#include "FriendNode.h"
+#include "Node.h"
 
 #define WIDTH 1000
 #define HEIGHT 1000
 
-FriendNode::FriendNode()
+Node::Node()
 {
   radius = .01 * WIDTH;
   x = WIDTH / 2; y = HEIGHT / 2;
@@ -13,17 +13,19 @@ FriendNode::FriendNode()
   circle.setFillColor(sf::Color(red, green, blue));
   circle.setOutlineThickness(2.0);
   circle.setOutlineColor(sf::Color(0, 0, 0));
-
   circle.setPosition(x, y);
   circle.setOrigin(0, 0);
 
-  xVelocity = 0;
+  text.setFillColor(sf::Color::Red);
+  text.setString(friendInfo.getName());
+
+  xVelocity = 1;
   yVelocity = 0;
-  xAcceleration = 0;
-  yAcceleration = 0;
+  xAccel = 0;
+  xAccel = 0;
 }
 
-FriendNode::FriendNode(int x_, int y_)
+Node::Node(int x_, int y_)
 {
   radius = .01 * WIDTH;
   x = x_; y = y_;
@@ -37,36 +39,17 @@ FriendNode::FriendNode(int x_, int y_)
   circle.setPosition(x, y);
   circle.setOrigin(0, 0);
 
-  xVelocity = 0;
-  yVelocity = 0;
-  xAcceleration = 0;
-  yAcceleration = 0;
-}
+  text.setFillColor(sf::Color::Red);
+  text.setString(friendInfo.getName());
 
-FriendNode::FriendNode(int x_, int y_, std::string name_)
-{
-  radius = .01 * WIDTH;
-  x = x_; y = y_;
-  red = 255; green = 0; blue = 0;
-
-  circle.setRadius(radius);
-  circle.setFillColor(sf::Color(red, green, blue));
-  circle.setOutlineThickness(2.0);
-  circle.setOutlineColor(sf::Color(0, 0, 0));
-
-  circle.setPosition(x, y);
-  circle.setOrigin(0, 0);
-
-  friendDetails.setName(name_);
-
-  xVelocity = 0;
-  yVelocity = 0;
-  xAcceleration = 0;
-  yAcceleration = 0;
+  xVelocity = 1;
+  yVelocity = 1;
+  xAccel = 0;
+  yAccel = 0;
 }
 
 //WIP
-bool FriendNode::validLoc(FriendNode a)
+bool Node::validLoc(Node a)
 {
   if (abs(x - a.getX() < 2 * radius) || abs(x - a.getX() > 2 * radius))
     return false;
@@ -77,24 +60,48 @@ bool FriendNode::validLoc(FriendNode a)
 }
 
 //WIP
-void FriendNode::addNode(FriendNode a)
+void Node::addNode(Node a)
 {
   if (!validLoc(a))
     return;
 }
 
-float FriendNode::getDistance(FriendNode a)
+void Node::update()
+{
+  x += xVelocity;
+  y += yVelocity;
+  circle.setPosition(x, y);
+}
+
+float Node::getDistance(Node a)
 {
   float dx = a.getX() - x;
   float dy = a.getY() - y;
   return hypot(dx, dy);
 }
 
-void FriendNode::update()
+float Node::repulsiveForce(Node a)
 {
-  x += xVelocity;
-  y += yVelocity;
-  circle.setPosition(x, y);
+  float dist = getDistance(a);
+  float netRepel = -1 / (dist * dist);
+  // get angle
+  // get xAccel
+  // get yAccel
+  // make some constant value (tinker)
+  // TODO: Finish net forces
+
+  return 0;
+}
+
+float Node::attractiveForce(Node a)
+{
+  // Add if (friend), attractive force is stronger
+  return 0;
+}
+
+void Node::netForce()
+{
+  // gets accelerations and calculates a net acceleration for the node
 }
 
 

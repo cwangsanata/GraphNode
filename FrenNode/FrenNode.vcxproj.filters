@@ -5,12 +5,18 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Entities">
+      <UniqueIdentifier>{97e2ee4c-e5ca-4da0-8155-e2655be6185e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Entities">
-      <UniqueIdentifier>{97e2ee4c-e5ca-4da0-8155-e2655be6185e}</UniqueIdentifier>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{a9fe67a1-89d0-4393-95f7-f9aeb0615b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Fonts">
+      <UniqueIdentifier>{326d42a8-7e2a-491f-b912-f24be82c16a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -20,25 +26,25 @@
     <ClCompile Include="Link.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="FriendNode.cpp">
+    <ClCompile Include="Node.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Gui.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Logic</Filter>
     </ClCompile>
     <ClCompile Include="Friend.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Graph.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Logic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FriendNode.h">
+    <ClInclude Include="Node.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Gui.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Logic</Filter>
     </ClInclude>
     <ClInclude Include="Link.h">
       <Filter>Entities</Filter>
@@ -47,7 +53,12 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Graph.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Logic</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\..\Desktop\OpenSans-Regular.ttf">
+      <Filter>Resources</Filter>
+    </Font>
   </ItemGroup>
 </Project>

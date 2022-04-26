@@ -2,7 +2,7 @@
 
 Friend::Friend()
 {
-  name = "null";
+  name = "You";
 }
 
 Friend::Friend(std::string name_)
