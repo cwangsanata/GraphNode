@@ -3,27 +3,30 @@
 * Visual representation of the friends in space.
 */
 
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
 #include <math.h>
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Friend.h"
+
+static int totalNodes; // NSFW
+static int t; // Damping
 
 class Node
 {
 private:
   float radius;
-  int red, green, blue;
   int x, y;
   float xVelocity, yVelocity;
   float xAccel, yAccel;
-  sf::Text text;
+  float k; // Constant for calculating force
+  sf::Text textName;
   sf::CircleShape circle;
   Friend friendInfo;
 
 public:
-  // Constructors
   Node();
   Node(int, int);
   Node(int, int, std::string);
@@ -32,20 +35,20 @@ public:
   sf::CircleShape getCircle() { return circle; }
   int getX() { return x; }
   int getY() { return y; }
-  void setX(int x_) { x = x_; }
-  void setY(int y_) { y = y_; }
   int getRadius() { return radius; }
+  float getDistance(Node);
   Friend getFriend() { return friendInfo; }
-  sf::Text getText() { return text; }
+  sf::Text getTextName() { return textName; }
 
-  bool validLoc(Node);
-  void addNode(Node);
+  const void setXAccel(float);
+  const void setYAccel(float);
+
+  void validLoc();
+  // void addNode(Node);
   void update();
 
-  float getDistance(Node);
-  float repulsiveForce(Node); // Universally applies
-  float attractiveForce(Node); // Applies stronger to only nodes with edges
-  void netForce(); // merge both forces together
-  
-  
+  float repulsiveForce(const Node&); // Universally applies
+  float attractiveForce(const Node&); // Applies stronger to only nodes with edges
+  void netForce(const Node&); // merge both forces together
+  float getAngle(Node);
 };

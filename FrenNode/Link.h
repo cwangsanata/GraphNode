@@ -2,7 +2,7 @@
 
 #include <math.h>
 #include "Node.h"
-#include <iostream>
+// #include <iostream>
 
 #define PI 3.14159265
 
@@ -13,7 +13,6 @@
 class Link
 {
 private:
-  int red, green, blue;
   float angle; // In degrees
   float dx, dy;
   Node *source; 

@@ -18,12 +18,11 @@ int main()
   window.setVerticalSyncEnabled(true);
 
   sf::Font font;
-  if (!font.loadFromFile("/Resources/OpenSans-Regular.ttf"))
+ /* if (!font.loadFromFile("/Resources/OpenSans-Regular.ttf"))
   {
     std::cout << "Error loading font" << std::endl;
     system("pause");
-  }
-    
+  }*/
   
   // TEST
   Node friendOne; // (500, 500)
@@ -39,7 +38,7 @@ int main()
 
   // Randomly adding friends to network
   std::vector<Node> friends;
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 5; i++)
   {
     int randX = std::rand() % WIDTH;
     int randY = std::rand() % HEIGHT;
@@ -98,19 +97,36 @@ int main()
     testLinkFour.update();
     testLinkFive.update();
     testLinkOne.update();
+    
+    //friendOne.netForce(friendTwo);
+    //friendOne.netForce(friendThree);
+    friendTwo.netForce(friendOne);
+    friendTwo.netForce(friendThree);
+    friendTwo.netForce(friendFour);
+    friendThree.netForce(friendOne);
+    friendThree.netForce(friendTwo);
+    friendThree.netForce(friendFour);
+    friendFour.netForce(friendOne);
+    friendFour.netForce(friendTwo);
+    friendFour.netForce(friendThree);
 
-    window.draw(friendOne.getText());
-    // Draw all the nodes
-    for (const Link b : links)
+    window.draw(friendOne.getTextName());
+    // Draw all the links
+    for (Link b : links)
     {
-      // window.draw(b.getLine());
+      window.draw(b.getLine());
+      b.update();
     }
 
 
-    // Draw all the friends
-    for (const Node a : friends)
+    // Draw all the nodes
+    for (Node a : friends)
     {
-      // window.draw(a.getCircle());
+      window.draw(a.getCircle());
+      for (Node b : friends)
+        a.netForce(b);
+
+      a.update();
     }
 
     window.display();
