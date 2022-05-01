@@ -16,6 +16,7 @@ public:
   Graph(std::vector<Node>);
 
   const void addNode(Node&);
+  const void addLink(Link&);
   const void connectNodes();
   const void connectNodes(Node&, Node&);
   const void connectNodes(Link);

@@ -4,10 +4,14 @@ Graph::Graph()
 {
 }
 
-
 const void Graph::addNode(Node &a)
 {
   nodes.push_back(a);
+}
+
+const void Graph::addLink(Link& a)
+{
+  edges.push_back(a);
 }
 
 const void Graph::connectNodes()
@@ -60,7 +64,3 @@ void Graph::update()
   for (int i = 0; i < edges.size(); i++)
     edges[i].update();
 }
-
-
-
-

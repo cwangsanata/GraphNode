@@ -9,10 +9,7 @@
 #include <math.h>
 #include <iostream>
 
-#include "Friend.h"
-
 static int totalNodes; // NSFW
-static int t; // Damping
 
 class Node
 {
@@ -26,7 +23,7 @@ private:
   sf::Text textID;
   sf::Font font;
   sf::CircleShape circle;
-  std::vector<Node> adjList; // Adjacency list implementation of graph
+  std::vector<Node*> adjList; // Adjacency list 
 
 public:
   Node();
@@ -40,7 +37,7 @@ public:
   int getRadius() { return radius; }
   std::string getStringID() { return id; }
   sf::Text getTextID() { return textID; }
-  std::vector<Node> getAdjList() { return adjList; }
+  std::vector<Node*> getAdjList() { return adjList; }
 
   const void setXAccel(float);
   const void setYAccel(float);

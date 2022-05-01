@@ -26,42 +26,38 @@ int main()
     system("pause");
   }
 
-  sf::Text text;
-  text.setFont(font);
-  text.setFillColor(sf::Color::Red);
-  text.setString("Batman");
-  text.setCharacterSize(10);
+  // DEMO
+  Graph nodeGraph;
 
-  // TEST
   Node friendOne; // (500, 500)
   Node friendTwo(50, 0);
   Node friendThree(50, 900);
-  Node friendFour(100, 100);
+  Node friendFour(300, 900);
   Node friendFive(750, 600);
+  Node friendSix(900, 200);
 
-  Link testLinkOne(friendTwo, friendThree);
-  Link testLinkTwo(friendTwo, friendOne);
+  Link testLinkOne(friendTwo, friendThree, 10);
+  Link testLinkTwo(friendTwo, friendOne, 2);
   Link testLinkThree(friendOne, friendThree);
-  Link testLinkFour(friendOne, friendFour);
+  Link testLinkFour(friendOne, friendFour, 7);
   Link testLinkFive(friendTwo, friendFour);
+  Link testLinkSix(friendFive, friendSix, 8);
+  Link testLinkSeven(friendOne, friendFive, -1);
 
-  std::vector<Link> links;
-  links.push_back(testLinkOne);
-
-  Graph nodeGraph;
   nodeGraph.addNode(friendOne);
   nodeGraph.addNode(friendTwo);
   nodeGraph.addNode(friendThree);
   nodeGraph.addNode(friendFour);
   nodeGraph.addNode(friendFive);
+  nodeGraph.addNode(friendSix);
 
-  friendOne.addAdjacent(friendTwo);
-  friendOne.addAdjacent(friendThree);
-  friendTwo.addAdjacent(friendThree);
-
-  //nodeGraph.connectNodes(testLinkOne);
-  //nodeGraph.connectNodes(testLinkTwo);
-  //nodeGraph.connectNodes(testLinkThree);
+  nodeGraph.connectNodes(testLinkOne);
+  nodeGraph.connectNodes(testLinkTwo);
+  nodeGraph.connectNodes(testLinkThree);
+  nodeGraph.connectNodes(testLinkFour);
+  nodeGraph.connectNodes(testLinkFive);
+  nodeGraph.connectNodes(testLinkSix);
+  nodeGraph.connectNodes(testLinkSeven);
   
   while (window.isOpen())
   {
@@ -74,15 +70,30 @@ int main()
       else if (event.type == sf::Event::KeyPressed)
         if (event.key.code == sf::Keyboard::Escape)
           window.close();
+        else if (event.key.code == sf::Keyboard::Space)
+        {
+          
+        }
+          
+
+      float startX;
+      float startY;
 
       if (event.type == sf::Event::MouseButtonPressed)
       {
         float mouseX = event.mouseButton.x;
         float mouseY = event.mouseButton.y;
-        Node tempNode(font, mouseX, mouseY);
 
         if (event.mouseButton.button == sf::Mouse::Left)
+        {
+          Node tempNode(font, mouseX, mouseY);
           nodeGraph.addNode(tempNode);
+        }
+      }
+
+      if (event.type == sf::Event::MouseButtonPressed)
+      {
+
       }
     }
 
@@ -91,6 +102,7 @@ int main()
     for (int i = 0; i < nodeGraph.getEdges().size(); i++)
     {
       window.draw(nodeGraph.getEdges()[i].getLine());
+      window.draw(nodeGraph.getEdges()[i].getTextWeight());
       nodeGraph.getEdges()[i].update();
     }
     

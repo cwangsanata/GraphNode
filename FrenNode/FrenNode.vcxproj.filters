@@ -26,12 +26,6 @@
     <ClCompile Include="Node.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Gui.cpp">
-      <Filter>Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="Friend.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Graph.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
@@ -40,13 +34,7 @@
     <ClInclude Include="Node.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Gui.h">
-      <Filter>Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Link.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Friend.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Graph.h">

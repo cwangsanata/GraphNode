@@ -18,6 +18,18 @@ Link::Link(Node &source_, Node &end_)
   edge.setRotation(angle);
 
   weight = 1;
+
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textWeight.setFont(font);
+  textWeight.setFillColor(sf::Color::Black);
+  textWeight.setString(std::to_string(weight));
+  textWeight.setCharacterSize(20);
+  textWeight.setPosition((*source).getX() + dx / 2, (*source).getY() + dy / 2);
 }
 
 Link::Link(Node& source_, Node& end_, int weight_)
@@ -38,6 +50,48 @@ Link::Link(Node& source_, Node& end_, int weight_)
   edge.setRotation(angle);
 
   weight = weight_;
+
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textWeight.setFont(font);
+  textWeight.setFillColor(sf::Color::Black);
+  textWeight.setString(std::to_string(weight));
+  textWeight.setCharacterSize(20);
+  textWeight.setPosition((*source).getX() + dx / 2, (*source).getY()+ dy / 2);
+}
+
+Link::Link(sf::Font font_, float x_1, float y_1, float x_2, float y_2, int weight_ = 1)
+{
+  
+  edge.setFillColor(sf::Color::Black);
+  edge.setOrigin(0, 0);
+  edge.setPosition(x_1, y_1);
+
+  dx = x_2 - x_1;
+  dy = y_2 - y_1;
+
+  angle = getAngle(x_1, y_1, x_2, y_2);
+
+  edge.setSize(sf::Vector2f(hypot(dy, dx), 2));
+  edge.setRotation(angle);
+
+  weight = weight_;
+
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textWeight.setFont(font);
+  textWeight.setFillColor(sf::Color::Black);
+  textWeight.setString(std::to_string(weight));
+  textWeight.setCharacterSize(20);
+  textWeight.setPosition((*source).getX() + dx / 2, (*source).getY() + dy / 2);
 }
 
 void Link::update() 

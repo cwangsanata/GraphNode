@@ -93,8 +93,8 @@ Node::Node(const sf::Font& font_, float x_ = 500, float y_ = 500)
   textID.setCharacterSize(20);
   textID.setPosition(x + radius, y + radius);
 
-  xVelocity = 0;
-  yVelocity = 0;
+  xVelocity = 1;
+  yVelocity = 1;
   xAccel = 0;
   yAccel = 0;
 
@@ -104,11 +104,14 @@ Node::Node(const sf::Font& font_, float x_ = 500, float y_ = 500)
 
 Node::~Node()
 {
+  for (Node* a : adjList) 
+    delete a;
 }
 
 void Node::addAdjacent(Node &a)
 {
-  adjList.push_back(a);
+  Node* tempPtr = &a;
+  adjList.push_back(tempPtr);
 }
 
 // TODO: Should be boundary check repulsion
@@ -173,8 +176,7 @@ float Node::attractiveForce(const Node& a)
 
 void Node::netForce(const Node& a)
 {
-  t++;
-  float netForce = attractiveForce(a) - repulsiveForce(a); //attractiveForce(a);// - repulsiveForce(a);
+  float netForce = attractiveForce(a) - repulsiveForce(a);
   float angle = getAngle(a);
 
   // Change constant 
