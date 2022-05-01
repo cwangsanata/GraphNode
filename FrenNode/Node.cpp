@@ -108,13 +108,13 @@ Node::~Node()
     delete a;
 }
 
+// Queue
 void Node::addAdjacent(Node &a)
 {
   Node* tempPtr = &a;
   adjList.push_back(tempPtr);
 }
 
-// TODO: Should be boundary check repulsion
 void Node::validLoc()
 {
   if (x > WIDTH)

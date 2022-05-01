@@ -17,8 +17,6 @@ const void Graph::addLink(Link& a)
 const void Graph::connectNodes()
 {
   for (int i = 0; i < nodes.size(); i++) {  
-    std::cout << "NAME: " << nodes[i].getStringID() << " ";
-    std::cout << "SIZE: " << nodes[i].getAdjList().size() << std::endl;
     for (int j = 0; j < nodes[i].getAdjList().size(); j++)
     {
       edges.push_back(Link(nodes[i], nodes[j]));

@@ -75,7 +75,6 @@ int main()
           
         }
           
-
       float startX;
       float startY;
 
