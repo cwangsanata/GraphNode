@@ -15,3 +15,6 @@ I never used a C++ library (outside of whatever is built in) before, let alone a
 
 ## Dependencies
 * SFML Library https://www.sfml-dev.org/download.php (Graphics, Window, and System) - Compile for your own platform via the link (On Windows: CMake is easiest).
+
+## Project Presentation
+* https://docs.google.com/presentation/d/1xWcUAhflg2dU7W4FSLKXHKBTuGb3bawtoYK5Q3Tg8fI/edit?usp=sharing
