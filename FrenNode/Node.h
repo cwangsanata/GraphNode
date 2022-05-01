@@ -1,6 +1,6 @@
 #pragma once
 /*
-* Visual representation of the friends in space.
+* Visual representation of the nodes
 */
 
 #include <SFML/Graphics.hpp>
@@ -22,31 +22,35 @@ private:
   float xVelocity, yVelocity;
   float xAccel, yAccel;
   float k; // Constant for calculating force
-  sf::Text textName;
+  std::string id;
+  sf::Text textID;
+  sf::Font font;
   sf::CircleShape circle;
-  Friend friendInfo;
+  std::vector<Node> adjList; // Adjacency list implementation of graph
 
 public:
   Node();
-  Node(int, int);
-  Node(int, int, std::string);
-  // ~FriendNode();
+  Node(float, float);
+  Node(const sf::Font&, float, float);
+  ~Node();
 
   sf::CircleShape getCircle() { return circle; }
   int getX() { return x; }
   int getY() { return y; }
   int getRadius() { return radius; }
-  float getDistance(Node);
-  Friend getFriend() { return friendInfo; }
-  sf::Text getTextName() { return textName; }
+  std::string getStringID() { return id; }
+  sf::Text getTextID() { return textID; }
+  std::vector<Node> getAdjList() { return adjList; }
 
   const void setXAccel(float);
   const void setYAccel(float);
 
   void validLoc();
-  // void addNode(Node);
   void update();
+  void addAdjacent(Node&);
 
+  bool checkCollision(float x, float y);
+  float getDistance(Node);
   float repulsiveForce(const Node&); // Universally applies
   float attractiveForce(const Node&); // Applies stronger to only nodes with edges
   void netForce(const Node&); // merge both forces together

@@ -6,42 +6,60 @@
 
 Node::Node()
 {
-  radius = .01 * std::sqrt(WIDTH * HEIGHT);
+  radius = .03 * std::sqrt(WIDTH * HEIGHT);
   x = WIDTH / 2; y = HEIGHT / 2;
+  id = "0";
 
   circle.setRadius(radius);
   circle.setFillColor(sf::Color::Red);
   circle.setOutlineThickness(2.0);
-  circle.setOutlineColor(sf::Color(0, 0, 0));
+  circle.setOutlineColor(sf::Color::Black);
   circle.setPosition(x, y);
-  circle.setOrigin(0, 0);
 
-  textName.setFillColor(sf::Color::Red);
-  textName.setString(friendInfo.getName());
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textID.setFont(font);
+  textID.setFillColor(sf::Color::Black);
+  textID.setString(id);
+  textID.setCharacterSize(20);
+  textID.setPosition(x + radius, y + radius);
 
   xVelocity = 0;
   yVelocity = 0;
   xAccel = 0;
   xAccel = 0;
 
+  
   k = std::sqrt(WIDTH * HEIGHT) / ++totalNodes;
 }
 
-Node::Node(int x_, int y_)
+Node::Node(float x_, float y_)
 {
-  radius = .01 * std::sqrt(WIDTH * HEIGHT);
+  radius = .03 * std::sqrt(WIDTH * HEIGHT);
   x = x_; y = y_;
+  id = std::to_string(totalNodes);
 
   circle.setRadius(radius);
   circle.setFillColor(sf::Color::White);
   circle.setOutlineThickness(2.0);
   circle.setOutlineColor(sf::Color(0, 0, 0));
-
   circle.setPosition(x, y);
-  circle.setOrigin(0, 0);
 
-  textName.setFillColor(sf::Color::Red);
-  textName.setString(friendInfo.getName());
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textID.setFont(font);
+  textID.setFillColor(sf::Color::Black);
+  textID.setString(id);
+  textID.setCharacterSize(20);
+  textID.setPosition(x + radius, y + radius);
 
   xVelocity = 0;
   yVelocity = 0;
@@ -49,6 +67,48 @@ Node::Node(int x_, int y_)
   yAccel = 0;
 
   k = std::sqrt(WIDTH * HEIGHT) / ++totalNodes;
+}
+
+Node::Node(const sf::Font& font_, float x_ = 500, float y_ = 500)
+{
+  radius = .03 * std::sqrt(WIDTH * HEIGHT);
+  x = x_; y = y_;
+  id = std::to_string(totalNodes);
+
+  circle.setRadius(radius);
+  circle.setFillColor(sf::Color::White);
+  circle.setOutlineThickness(2.0);
+  circle.setOutlineColor(sf::Color(0, 0, 0));
+  circle.setPosition(x, y);
+
+  if (!font.loadFromFile("Montserrat-Regular.ttf"))
+  {
+    std::cout << "ERROR: CANNOT LOAD FONT" << std::endl;
+    system("pause");
+  }
+
+  textID.setFont(font_);
+  textID.setFillColor(sf::Color::Black);
+  textID.setString(id);
+  textID.setCharacterSize(20);
+  textID.setPosition(x + radius, y + radius);
+
+  xVelocity = 0;
+  yVelocity = 0;
+  xAccel = 0;
+  yAccel = 0;
+
+  k = std::sqrt(WIDTH * HEIGHT) / ++totalNodes;
+
+}
+
+Node::~Node()
+{
+}
+
+void Node::addAdjacent(Node &a)
+{
+  adjList.push_back(a);
 }
 
 // TODO: Should be boundary check repulsion
@@ -85,8 +145,11 @@ void Node::update()
   x += xVelocity;
   y += yVelocity;
   circle.setPosition(x, y);
-  
-  std::cout << xAccel << "\n";
+}
+
+bool Node::checkCollision(float x_, float y_)
+{
+  return x_ >= x && x_ <= x + radius && y_ >= y && y <= y + radius;
 }
 
 float Node::getDistance(Node a)
@@ -111,7 +174,7 @@ float Node::attractiveForce(const Node& a)
 void Node::netForce(const Node& a)
 {
   t++;
-  float netForce = -repulsiveForce(a); //attractiveForce(a);// - repulsiveForce(a);
+  float netForce = attractiveForce(a) - repulsiveForce(a); //attractiveForce(a);// - repulsiveForce(a);
   float angle = getAngle(a);
 
   // Change constant 

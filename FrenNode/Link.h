@@ -18,10 +18,12 @@ private:
   Node *source; 
   Node *end;
   sf::RectangleShape edge;
+  int weight;
 
 public:
-  Link(Node &, Node &);
-  // TODO: Add delete 
+  Link(Node&, Node&);
+  Link(Node&, Node&, int);
+  // ~Link();
   sf::RectangleShape getLine() { return edge; }
   void update();
   float getAngle(float, float, float, float);

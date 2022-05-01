@@ -16,6 +16,28 @@ Link::Link(Node &source_, Node &end_)
 
   edge.setSize(sf::Vector2f(hypot(dy, dx), 2));
   edge.setRotation(angle);
+
+  weight = 1;
+}
+
+Link::Link(Node& source_, Node& end_, int weight_)
+{
+  source = &source_;
+  end = &end_;
+
+  edge.setFillColor(sf::Color::Black);
+  edge.setOrigin(0, 0);
+  edge.setPosition((*source).getX() + (*source).getRadius(), (*source).getY() + (*source).getRadius());
+
+  dx = (*end).getX() - (*source).getX();
+  dy = (*end).getY() - (*source).getY();
+
+  angle = getAngle((*source).getX(), (*source).getY(), (*end).getX(), (*end).getY());
+
+  edge.setSize(sf::Vector2f(hypot(dy, dx), 2));
+  edge.setRotation(angle);
+
+  weight = weight_;
 }
 
 void Link::update() 

@@ -12,11 +12,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resources">
+    <Filter Include="Source Files\Resources">
       <UniqueIdentifier>{a9fe67a1-89d0-4393-95f7-f9aeb0615b6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Fonts">
-      <UniqueIdentifier>{326d42a8-7e2a-491f-b912-f24be82c16a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\..\..\Desktop\OpenSans-Regular.ttf">
-      <Filter>Resources</Filter>
+      <Filter>Source Files\Resources</Filter>
     </Font>
   </ItemGroup>
 </Project>

@@ -14,22 +14,18 @@ private:
 public:
   Friend();
   Friend(std::string);
-  
-  std::string getName() { return name; }
 
+  std::string getName() { return name; }
   void setName(std::string name_) { name = name_; }
-  void addFriend(Friend);
+  void addFriend(const Friend&);
   void removeFriend(Friend);
   void removeFriend(std::string);
+  const std::vector<Friend> getFriendList();
   void printFriends();
 
   friend bool operator==(const Friend& lhs, const Friend& rhs)
   {
-    if (lhs == rhs) 
-      return true;
-
-    else
-      return false;
+    return lhs == rhs;
   }
 
 // degreesFromFriend()
