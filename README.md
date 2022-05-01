@@ -11,7 +11,7 @@ I never used a C++ library (outside of whatever is built in) before, let alone a
 
 ## Installation (Windows)
 * Clone https://github.com/cwangsanata/GraphNode
-* Install the DLLs from SFML-dev.org
+* Compile the dependencies from SFML website. 
 
 ## Dependencies
 * SFML Library https://www.sfml-dev.org/download.php (Graphics, Window, and System) - Compile for your own platform via the link (On Windows: CMake is easiest).
