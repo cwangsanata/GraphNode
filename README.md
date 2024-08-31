@@ -15,6 +15,3 @@ The fascination with graphs led to the creation of GraphNode. The goal was to bu
 
 ## Dependencies
 * SFML Library https://www.sfml-dev.org/download.php (Graphics, Window, and System) - Compile for your own platform via the link (On Windows: Use CMake).
-
-## Project Presentation
-* https://docs.google.com/presentation/d/1xWcUAhflg2dU7W4FSLKXHKBTuGb3bawtoYK5Q3Tg8fI/edit?usp=sharing
